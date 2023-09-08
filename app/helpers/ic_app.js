@@ -1,9 +1,11 @@
-const NAME = "localhost:1111",
+const NAME = "localhost:4000",
   DOMAIN = `http://${NAME}`,
-  SITE = `${DOMAIN}/coins`;
+  SITE = `${DOMAIN}/`,
+  COINS = `${SITE}coins`;
 
 export default {
   NAME,
   DOMAIN,
   SITE,
+  COINS,
 };

@@ -1,5 +1,4 @@
 export function ajax(props) {
-  console.log("aca");
   let { url, method, header, cbSuccess } = props;
 
   fetch(url)
@@ -12,6 +11,5 @@ export function ajax(props) {
           <p>Error ${err.status} : ${message} </p>
         </div>
       `;
-      console.log(err);
     });
 }
