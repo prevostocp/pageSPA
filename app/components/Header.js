@@ -7,7 +7,8 @@ export function Header() {
     "container-fluid",
     "position-relative",
     "d-flex",
-    "p-0"
+    "p-0",
+    "bg-info"
   );
   $divContainer.appendChild(Title());
   $header.appendChild($divContainer);
