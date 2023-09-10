@@ -7,6 +7,8 @@ export function Router() {
     w = window;
   const { hash } = location;
 
+  console.log(hash);
+
   if (!hash || hash === "#/") {
     //cargarDatos(url);
     const html = "<h2>Welcome to the INVEST-CRYPTO</h2>";

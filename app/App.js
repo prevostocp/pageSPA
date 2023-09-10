@@ -1,6 +1,7 @@
 import { Header } from "./components/Header.js";
 import { Loader } from "./components/Loader.js";
 import { Coins } from "./components/Coins.js";
+import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
 
 export function App() {
@@ -8,8 +9,9 @@ export function App() {
 
   limpiarHTML($root);
 
-  $root.appendChild(Header());
-  $root.appendChild(Coins());
+  $root.appendChild(Container());
+  //$root.appendChild(Header());
+  //$root.appendChild(Coins());
   $root.appendChild(Loader());
 
   Router();
