@@ -13,6 +13,7 @@ export function Router() {
   if (!hash || hash === "#/") {
     //cargarDatos(url);
     const html = "<h2>Welcome to the INVEST-CRYPTO</h2>";
+    cargarMenu()
     renderContainer(html);
   } else if (hash === "#coins") {
     cargarDatos("coins");
@@ -127,7 +128,16 @@ function crearFormulario(entity) {
   renderContainer(html);
 }
 
+function cargarMenu() {
+  const $menu = document.querySelector("#menu");
+  
+  const $link1 = document.createElement("a");
+
+  $menu.appendChild($link1);
+}
+
 function renderContainer(html) {
   document.querySelector(".loader").style.display = "none";
-  document.querySelector("#coins").innerHTML = html;
+  //document.querySelector("#coins").innerHTML = html;
+  document.querySelector("#root").innerHTML = html;
 }

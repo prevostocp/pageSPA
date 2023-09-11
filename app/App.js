@@ -3,16 +3,13 @@ import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
 
 export function App() {
-  const $content = document.querySelector(".content");
-  console.log($content);
-  if (!$content) {
-    const $root = document.querySelector("#root");
+  const $root = document.querySelector("#root");
 
-    limpiarHTML($root);
+  limpiarHTML($root);
 
-    $root.appendChild(Container());
-    $root.appendChild(Loader());
-  }
+  //$root.appendChild(Container());
+  //$root.appendChild(Coins());
+  $root.appendChild(Loader());
 
   Router();
 
