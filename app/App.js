@@ -1,20 +1,35 @@
-import { Header } from "./components/Header.js";
 import { Loader } from "./components/Loader.js";
-import { Coins } from "./components/Coins.js";
 import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
 
 export function App() {
-  const $root = document.querySelector("#root");
+  const $content = document.querySelector(".content");
+  console.log($content);
+  if (!$content) {
+    const $root = document.querySelector("#root");
 
-  limpiarHTML($root);
+    limpiarHTML($root);
 
-  $root.appendChild(Container());
-  //$root.appendChild(Header());
-  //$root.appendChild(Coins());
-  $root.appendChild(Loader());
+    $root.appendChild(Container());
+    $root.appendChild(Loader());
+  }
 
   Router();
+
+  const $aToggle = document.querySelector("#aToggle");
+
+  $aToggle.addEventListener("click", () => {
+    const $existeOpen = document.querySelector(".open");
+    const $content = document.querySelector(".content");
+    const $sidebar = document.querySelector(".sidebar");
+    if (!$existeOpen) {
+      $content.classList.add("open");
+      $sidebar.classList.add("open");
+    } else {
+      $content.classList.remove("open");
+      $sidebar.classList.remove("open");
+    }
+  });
 }
 
 function limpiarHTML(node) {

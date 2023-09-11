@@ -5,7 +5,7 @@ export function Sidebar() {
   const $nav = document.createElement("nav");
   $nav.classList.add("navbar", "bg-secondary", "navbar-dark");
   $nav.innerHTML = `
-    <a href="/" class="navbar-brand mx-4 mb-3">
+    <a href="index.html" class="navbar-brand mx-4 mb-3">
       <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Invest-Crypto</h3>
     </a>
     <div class="d-flex align-items-center ms-4 mb-4">
