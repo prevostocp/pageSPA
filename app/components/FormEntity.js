@@ -34,9 +34,6 @@ export function FormEntity(props) {
                         </div>
                       </div>
                     </div>
-                </div>
-
-
-             
+                </div>  
       `;
 }
