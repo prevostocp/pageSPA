@@ -10,10 +10,10 @@ export function Router() {
 
   console.log(hash);
 
-  if (!hash || hash === "#/") {
+  if (!hash || hash === "#/" || hash === "") {
     //cargarDatos(url);
     const html = "<h2>Welcome to the INVEST-CRYPTO</h2>";
-    cargarMenu()
+    //cargarMenu();
     renderContainer(html);
   } else if (hash === "#coins") {
     cargarDatos("coins");
@@ -82,9 +82,9 @@ function cargarDatos(url) {
 
 function crearFormulario(entity) {
   let html = `
-  
+  <div class="container-fluid">
   <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-  <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-5">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
       <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
           <div class="d-flex align-items-center justify-content-between mb-3">
               <a href="index.html" class="">
@@ -121,7 +121,7 @@ function crearFormulario(entity) {
       </div>
   </div>
 </div>
-  
+</div>  
   
   `;
 
@@ -130,7 +130,7 @@ function crearFormulario(entity) {
 
 function cargarMenu() {
   const $menu = document.querySelector("#menu");
-  
+
   const $link1 = document.createElement("a");
 
   $menu.appendChild($link1);
@@ -139,5 +139,6 @@ function cargarMenu() {
 function renderContainer(html) {
   document.querySelector(".loader").style.display = "none";
   //document.querySelector("#coins").innerHTML = html;
+  console.log(html);
   document.querySelector("#root").innerHTML = html;
 }

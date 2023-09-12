@@ -5,7 +5,7 @@ import { Router } from "./components/Router.js";
 export function App() {
   const $root = document.querySelector("#root");
 
-  limpiarHTML($root);
+  //limpiarHTML($root);
 
   //$root.appendChild(Container());
   //$root.appendChild(Coins());
@@ -13,20 +13,20 @@ export function App() {
 
   Router();
 
-  const $aToggle = document.querySelector("#aToggle");
+  // const $aToggle = document.querySelector("#aToggle");
 
-  $aToggle.addEventListener("click", () => {
-    const $existeOpen = document.querySelector(".open");
-    const $content = document.querySelector(".content");
-    const $sidebar = document.querySelector(".sidebar");
-    if (!$existeOpen) {
-      $content.classList.add("open");
-      $sidebar.classList.add("open");
-    } else {
-      $content.classList.remove("open");
-      $sidebar.classList.remove("open");
-    }
-  });
+  // $aToggle.addEventListener("click", () => {
+  //   const $existeOpen = document.querySelector(".open");
+  //   const $content = document.querySelector(".content");
+  //   const $sidebar = document.querySelector(".sidebar");
+  //   if (!$existeOpen) {
+  //     $content.classList.add("open");
+  //     $sidebar.classList.add("open");
+  //   } else {
+  //     $content.classList.remove("open");
+  //     $sidebar.classList.remove("open");
+  //   }
+  // });
 }
 
 function limpiarHTML(node) {
