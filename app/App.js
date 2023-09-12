@@ -1,6 +1,7 @@
 import { Loader } from "./components/Loader.js";
 import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
+import { factoryEntity } from "./lib/entities.js"
 
 export function App() {
   const $root = document.querySelector("#root");
@@ -27,6 +28,11 @@ export function App() {
   //     $sidebar.classList.remove("open");
   //   }
   // });
+
+
+  const $aCoin = document.querySelector("#aCoin");
+  $aCoin.addEventListener("click", factoryEntity("coin"));
+
 }
 
 function limpiarHTML(node) {
