@@ -1,15 +1,22 @@
-import api from "../helpers/ic_app.js";
 import { ajax } from "../helpers/ajax.js";
-import { Coin } from "./Coin.js";
+import { Entity } from "./Entity.js";
 import { FormEntity } from "../components/FormEntity.js";
 
-export function factoryEntity(entity) {
+const aObjectsEntity = [];
+
+export function factoryEntity(entity, action) {
+  const entidad = new Entity("List " + entity, entity);
   switch (entity) {
     case "coin":
-      const entidad = new Coin();
-      entidad.columns = ["Name", "Symbol", "Image"];
-      loadEntity(entidad);
-      break;
+      switch (entity) {
+        case "load":
+          entidad.columns = ["Name", "Symbol", "Image"];
+          loadEntity(entidad);
+          break;
+        case "new":
+          newEntity(entidad);
+      }
+      
   }
 }
 
@@ -17,16 +24,22 @@ function loadEntity(ent) {
   ajax({
     url: ent.getCoins,
     cbSuccess: (elements) => {
+
+      aObjectsEntity = [...elements];
+
       const htmlColumns = generateColumns(ent.columns);
       const htmlBodyTable = generateBody(elements);
 
-      FormEntity({ cols: htmlColumns, body: htmlBodyTable, title: ent.title });
+      renderContainer(FormEntity({ 'cols': htmlColumns, 'body': htmlBodyTable, 'title': ent.title, 'withForms': ent.withForms }));
     },
   });
 }
 
+function newEntity(ent) {
+
+}
+
 function generateColumns(columns) {
-  //console.log("colums");
 
   const html = columns.reduce((ac, element) => {
     return (ac += `
@@ -34,23 +47,22 @@ function generateColumns(columns) {
     `);
   }, "");
 
-  //console.log(html);
 }
 
 function generateBody(elements) {
-  //   elements.forEach((element) => {
-  //     // console.log(element);
-  //   });
-
+ 
   const html = elements.reduce((ac, element) => {
+
+    const {id, name, symbol, image} = element;
+
     return (ac += `
     <tr>
                                        
-    <td><div class="m-2">${element.name}</div></td>
-    <td><div class="m-2">${element.symbol}</div></td>
-    <td><img src="${element.image}" alt="" class="m-2" /></td>                                        
-    <td><button class="btn btn-outline-danger m-2">Delete</botton></td>
-    <td><button class="btn btn-outline-danger m-2">Edit</botton></td>
+    <td><div class="m-2">${name}</div></td>
+    <td><div class="m-2">${symbol}</div></td>
+    <td><img src="${image}" alt="" class="m-2" /></td>                                        
+    <td><button class="btn btn-outline-danger m-2" id="btnDelete-${id}" >Delete</botton></td>
+    <td><button class="btn btn-outline-danger m-2" id="btnEdit-${id}">Edit</botton></td>
 </tr>
     `);
   }, "");
@@ -58,7 +70,17 @@ function generateBody(elements) {
 
 function renderContainer(html) {
   document.querySelector(".loader").style.display = "none";
-  //document.querySelector("#coins").innerHTML = html;
-  //console.log(html);
-  document.querySelector("#root").innerHTML = html;
+
+  const divContainer = document.createElement("div");
+  divContainer.innerHTML = html;
+
+  const $root = document.querySelector("#root");
+  limpiarHTML($root);
+  $root.appendChild(divContainer);
+}
+
+function limpiarHTML(node) {
+  while (node.firstChild) {
+    node.remove(node.firstChild);
+  }
 }

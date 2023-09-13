@@ -29,12 +29,19 @@ export function App() {
   //   }
   // });
 
-  const $aCoin = document.querySelector("#aCoin");
-  $aCoin.addEventListener("click", factoryEntity("coin"));
+ 
 }
 
-function limpiarHTML(node) {
-  while (node.firstChild) {
-    node.remove(node.firstChild);
-  }
+function enventsListeners() {
+  const $aCoin = document.querySelector("#aCoin");
+  $aCoin.addEventListener("click", factoryEntity("coin"));
+
+  const $btnNew = document.querySelector("#btnNew-coin");
+  $btnNew.addEventListener("click", )
 }
+
+// function limpiarHTML(node) {
+//   while (node.firstChild) {
+//     node.remove(node.firstChild);
+//   }
+// }
