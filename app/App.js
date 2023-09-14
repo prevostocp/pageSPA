@@ -28,8 +28,7 @@ export function App() {
   //     $sidebar.classList.remove("open");
   //   }
   // });
-
- 
+  enventsListeners();
 }
 
 function enventsListeners() {
@@ -37,7 +36,7 @@ function enventsListeners() {
   $aCoin.addEventListener("click", factoryEntity("coin"));
 
   const $btnNew = document.querySelector("#btnNew-coin");
-  $btnNew.addEventListener("click", )
+  $btnNew.addEventListener("click");
 }
 
 // function limpiarHTML(node) {
