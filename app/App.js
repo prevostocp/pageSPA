@@ -2,10 +2,11 @@ import { Loader } from "./components/Loader.js";
 import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
 import { factoryEntity } from "./lib/entities.js";
+import { CrudContext, TableStrategy } from "./strategy.js";
+
+const $root = document.querySelector("#root");
 
 export function App() {
-  const $root = document.querySelector("#root");
-
   //limpiarHTML($root);
 
   //$root.appendChild(Container());
@@ -34,11 +35,28 @@ export function App() {
 function enventsListeners() {
   const $aCoin = document.querySelector("#aCoin");
   $aCoin.addEventListener("click", () => {
-    factoryEntity("coin", "load")
+    factoryEntity("coin", "load");
+  });
+
+  const $aCoinF = document.querySelector("#aCoinF");
+  $aCoinF.addEventListener("click", () => {
+    ajax({
+      url: ent.getCoins,
+      cbSuccess: (elements) => {
+        aObjectsEntity = [...elements];
+      },
+    });
+
+    createABM(new TableStrategy());
   });
 
   // const $btnNew = document.querySelector("#btnNew-coin");
   // $btnNew.addEventListener("click");
+}
+
+function createABM(strategy) {
+  const crudContext = new CrudContext(strategy, aObjectsEntity, $root);
+  crudContext.show();
 }
 
 // function limpiarHTML(node) {

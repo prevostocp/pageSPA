@@ -1,7 +1,6 @@
 import { ajax } from "../helpers/ajax.js";
 import { Entity } from "./Entity.js";
 import { FormEntity } from "../components/FormEntity.js";
-import { CrudContext } from "./strategy.js"
 
 let aObjectsEntity = [];
 
@@ -11,15 +10,13 @@ export function factoryEntity(entity, action) {
     case "coin":
       switch (action) {
         case "load":
-          
           entidad.columns = ["Name", "Symbol", "Image"];
-          //console.log(entidad)
+
           loadEntity(entidad);
           break;
         case "new":
           newEntity(entidad);
       }
-      
   }
 }
 
@@ -28,24 +25,26 @@ function loadEntity(ent) {
   ajax({
     url: ent.getCoins,
     cbSuccess: (elements) => {
-
-      //console.log(elements, "vacio")
       aObjectsEntity = [...elements];
-    
-      const htmlColumns = generateColumns(ent.columns);      
+
+      const htmlColumns = generateColumns(ent.columns);
       const htmlBodyTable = generateBody(aObjectsEntity);
-     
-      renderContainer(FormEntity({ 'cols': htmlColumns, 'body': htmlBodyTable, 'title': ent.title, 'withForms': ent.withForms }));
+
+      renderContainer(
+        FormEntity({
+          cols: htmlColumns,
+          body: htmlBodyTable,
+          title: ent.title,
+          withForms: ent.withForms,
+        })
+      );
     },
   });
 }
 
-function newEntity(ent) {
-
-}
+function newEntity(ent) {}
 
 function generateColumns(columns) {
-
   const html = columns.reduce((ac, element) => {
     return (ac += `
      <th scope="col">${element}</th>
@@ -53,16 +52,13 @@ function generateColumns(columns) {
   }, "");
 
   return html;
-
 }
 
 function generateBody(elements) {
- 
   try {
     const html = elements.reduce((ac, element) => {
+      const { id, name, symbol, image } = element;
 
-      const {id, name, symbol, image} = element;
-  
       return (ac += `
       <tr>
                                          
@@ -74,22 +70,19 @@ function generateBody(elements) {
       </tr>
       `);
     }, "");
-  
-    return html
+
+    return html;
   } catch (error) {
     return error;
   }
-
-    
 }
 
 function renderContainer(html) {
   document.querySelector(".loader").style.display = "none";
-  
 
   const divContainer = document.createElement("div");
   divContainer.innerHTML = html;
-  
+
   const $root = document.querySelector("#root");
   //limpiarHTML($root);
   $root.appendChild(divContainer);
