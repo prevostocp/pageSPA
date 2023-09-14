@@ -6,7 +6,7 @@ export function ajax(props) {
     .then((json) => cbSuccess(json))
     .catch((err) => {
       let message = err.statusText || "Error al consulta la API";
-      document.querySelector("#coins").innerHTML = `
+      document.querySelector("#root").innerHTML = `
         <div class="error" >
           <p>Error ${err.status} : ${message} </p>
         </div>

@@ -1,0 +1,23 @@
+{
+    "coins": [
+      {
+        "id_coin": 1,
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "image": "https://res.cloudinary.com/dlskeqkxh/image/upload/v1693524489/investments/upogeliwjnmk9xdmqocg.webp"
+      },
+      {
+        "id_coin": 2,
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "image": "https://res.cloudinary.com/dlskeqkxh/image/upload/v1693524421/investments/mmuellz8kw3vqkfh2hz9.webp"
+      },
+      {
+        "id_coin": 3,
+        "name": "Dogecoin",
+        "symbol": "DOGE",
+        "image": "https://res.cloudinary.com/dlskeqkxh/image/upload/v1693524506/investments/fb995d4my1dae8nuk1gi.webp"
+      }
+      
+    ]
+  }

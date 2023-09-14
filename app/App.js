@@ -33,10 +33,12 @@ export function App() {
 
 function enventsListeners() {
   const $aCoin = document.querySelector("#aCoin");
-  $aCoin.addEventListener("click", factoryEntity("coin"));
+  $aCoin.addEventListener("click", () => {
+    factoryEntity("coin", "load")
+  });
 
-  const $btnNew = document.querySelector("#btnNew-coin");
-  $btnNew.addEventListener("click");
+  // const $btnNew = document.querySelector("#btnNew-coin");
+  // $btnNew.addEventListener("click");
 }
 
 // function limpiarHTML(node) {

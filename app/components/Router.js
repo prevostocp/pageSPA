@@ -8,17 +8,20 @@ export function Router() {
     w = window;
   const { hash } = location;
 
+  const $root = document.querySelector("#root");
+  limpiarHTML($root)
+
   console.log(hash);
 
   if (!hash || hash === "#/" || hash === "") {
     //cargarDatos(url);
     const html = "<h2>Welcome to the INVEST-CRYPTO</h2>";
     //cargarMenu();
-    renderContainer(html);
+    //renderContainer(html);
   } else if (hash === "#coins") {
-    cargarDatos("coins");
+    //cargarDatos("coins");
   } else if (hash === "#addcoin") {
-    crearFormulario("coin");
+    //crearFormulario("coin");
   }
 }
 
@@ -141,4 +144,10 @@ function renderContainer(html) {
   //document.querySelector("#coins").innerHTML = html;
   console.log(html);
   document.querySelector("#root").innerHTML = html;
+}
+
+function limpiarHTML(node) {
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
 }
