@@ -1,20 +1,20 @@
-export class CrudContext{
+class CrudContext{
     constructor(strategy, data, element){
         this.setStrategy(strategy);
         this.data = data;
         this.element = element;
     }
 
-    setStrategy(strategy){
-        this.strategy = strategy
-    }
+  setStrategy(strategy) {
+    this.strategy = strategy;
+  }
 
-    show(){
-        this.strategy.show(this.data, this.element);
-    }
+  show() {
+    this.strategy.show(this.data, this.element);
+  }
 }
 
-export class TableStrategy{
+class tableStrategy{
 
     show(data, element){
         // element.innerHTML = data.reduce((ac, e)=>{
@@ -28,7 +28,7 @@ export class TableStrategy{
     }
 }
 
-export class FormStrategy{
+class FormStrategy{
 
     constructor(large) {
         this.large = large
@@ -48,7 +48,7 @@ export class FormStrategy{
    
 }
 
-export class MainStrategy{
+class MainStrategy{
 
     show(data, element){
         // element.innerHTML = data.reduce((ac, e)=>{
