@@ -5,6 +5,7 @@ export class Entity {
     this.title = title;
     this.columns = [];
     this.getCoins = api.COINS;
+    this.getEntities = "";
     this.entityName = name;
     this.widthForms = withForms;
 
@@ -18,5 +19,9 @@ export class Entity {
 
   setWithForms(withForms) {
     this.widthForms = withForms;
+  }
+
+  setEntities(url) {
+    this.getEntities = url;
   }
 }

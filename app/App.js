@@ -1,7 +1,7 @@
 import { Loader } from "./components/Loader.js";
-import { Container } from "./components/Container.js";
 import { Router } from "./components/Router.js";
 import { factoryEntity } from "./lib/entities.js";
+import api from "../helpers/ic_app.js";
 
 export function App() {
   const $root = document.querySelector("#root");
@@ -35,6 +35,14 @@ function enventsListeners() {
   const $aCoin = document.querySelector("#aCoin");
   $aCoin.addEventListener("click", () => {
     factoryEntity("coin", "load")
+  });
+
+  const $aCoinFa = document.querySelector("#aCoinFa");
+  $aCoin.addEventListener("click", () => {
+    const entidad = new Entity("List " + "coins", "coins");
+    entidad.columns = ["Name", "Symbol", "Image"];
+    entidad.setEntities = api.COINS;
+    loadEntityFa(entidad)
   });
 
   // const $btnNew = document.querySelector("#btnNew-coin");

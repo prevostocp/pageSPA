@@ -1,7 +1,7 @@
 import { ajax } from "../helpers/ajax.js";
 import { Entity } from "./Entity.js";
 import { FormEntity } from "../components/FormEntity.js";
-import { CrudContext } from "./strategy.js"
+
 
 let aObjectsEntity = [];
 
@@ -13,7 +13,7 @@ export function factoryEntity(entity, action) {
         case "load":
           
           entidad.columns = ["Name", "Symbol", "Image"];
-          //console.log(entidad)
+        
           loadEntity(entidad);
           break;
         case "new":
