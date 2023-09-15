@@ -1,4 +1,4 @@
-class CrudContext{
+export class CrudContext{
     constructor(strategy, data, element){
         this.setStrategy(strategy);
         this.data = data;
@@ -14,7 +14,7 @@ class CrudContext{
   }
 }
 
-class tableStrategy{
+export class tableStrategy{
 
     show(data, element){
         // element.innerHTML = data.reduce((ac, e)=>{
@@ -28,7 +28,7 @@ class tableStrategy{
     }
 }
 
-class FormStrategy{
+export class FormStrategy{
 
     constructor(large) {
         this.large = large

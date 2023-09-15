@@ -1,6 +1,11 @@
 import { Loader } from "./components/Loader.js";
 import { Router } from "./components/Router.js";
 import { factoryEntity } from "./lib/entities.js";
+import { Entity } from "./lib/Entity.js";
+import api from "./helpers/ic_app.js";
+import { loadEntityFa } from "./lib/entitiesObj.js";
+
+const $root = document.querySelector("#root");
 
 export function App() {
   //limpiarHTML($root);
@@ -34,23 +39,13 @@ function enventsListeners() {
     factoryEntity("coin", "load");
   });
 
-  const $aCoinF = document.querySelector("#aCoinF");
-  $aCoinF.addEventListener("click", () => {
-    ajax({
-      url: ent.getCoins,
-      cbSuccess: (elements) => {
-        aObjectsEntity = [...elements];
-      },
-    });
-
-    createABM(new TableStrategy());
-  });
 
   const $aCoinFa = document.querySelector("#aCoinFa");
-  $aCoin.addEventListener("click", () => {
+  $aCoinFa.addEventListener("click", () => {
     const entidad = new Entity("List " + "coins", "coins");
     entidad.columns = ["Name", "Symbol", "Image"];
-    entidad.setEntities = api.COINS;
+    entidad.setEntities(api.COINS);
+    
     loadEntityFa(entidad)
   });
 
