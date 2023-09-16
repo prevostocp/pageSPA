@@ -1,31 +1,36 @@
-import { CrudContext, FormStrategy } from "./strategy.js";
+import { CrudContext, FormStrategy, TableStrategy } from "./strategy.js";
 import { ajax } from "../helpers/ajax.js";
 
 let aObjectsEntity = [];
 const crudContext = new CrudContext("", "", "");
 
-export function loadEntityFa(ent) {
-  
+export function loadEntityFa(ent, elementHTML) {
   document.querySelector(".loader").style.display = "block";
   ajax({
     url: ent.getEntities,
     cbSuccess: (elements) => {
-      
       aObjectsEntity = [...elements];
 
-      console.log(aObjectsEntity, "elements")
-      //createInterface();
-    
+      createInterface(elementHTML, ent.columns, ent.title);
     },
   });
 }
 
-function createInterface() {
-  limpiarHTML($root);
-  const formStrategy = new FormStrategy();
-  crudContext.setData = aObjectsEntity;
-  crudContext.setElement = $root;
-  crudContext.setStrategy(formStrategy);
+function createInterface(elementHTML, columns, title) {
+  limpiarHTML(elementHTML);
+  const tableStrategy = new TableStrategy();
+  // crudContext.setData(aObjectsEntity);
+  // crudContext.setElement(elementHTML);
+  // crudContext.setColumns(columns);
+  // crudContext.setStrategy(tableStrategy);
+  crudContext.setProps({
+    strategy: tableStrategy,
+    data: aObjectsEntity,
+    element: elementHTML,
+    columns: columns,
+    title: title,
+  });
+
   crudContext.show();
 }
 

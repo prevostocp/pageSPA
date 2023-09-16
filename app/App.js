@@ -39,14 +39,13 @@ function enventsListeners() {
     factoryEntity("coin", "load");
   });
 
-
   const $aCoinFa = document.querySelector("#aCoinFa");
   $aCoinFa.addEventListener("click", () => {
     const entidad = new Entity("List " + "coins", "coins");
     entidad.columns = ["Name", "Symbol", "Image"];
     entidad.setEntities(api.COINS);
-    
-    loadEntityFa(entidad)
+
+    loadEntityFa(entidad, $root);
   });
 
   // const $btnNew = document.querySelector("#btnNew-coin");
