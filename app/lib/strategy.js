@@ -1,4 +1,4 @@
-import { getFormHTML } from "./UIEntities.js";
+import { getFormHTML, formNewEntity } from "./UIEntities.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
@@ -13,6 +13,7 @@ export class CrudContext {
       element: "",
       columns: "",
       title: "",
+      entity: "",
     };
   }
 
@@ -43,7 +44,11 @@ export class CrudContext {
 
 export class TableStrategy {
   show(props) {
-    props.element.innerHTML = getFormHTML(props);
+    props.element.appendChild(getFormHTML(props));
+    const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
+    $btnNew.addEventListener("click", () => {
+      formNewEntity(props);
+    });
   }
 }
 
@@ -53,7 +58,7 @@ export class FormStrategy {
   }
 
   show(data, element) {
-    element.innerHTML = getFormHTML(data, element, this.large);
+    element.appendChild = getFormHTML(data, element, this.large);
   }
 }
 

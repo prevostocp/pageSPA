@@ -4,8 +4,10 @@ import { factoryEntity } from "./lib/entities.js";
 import { Entity } from "./lib/Entity.js";
 import api from "./helpers/ic_app.js";
 import { loadEntityFa } from "./lib/entitiesObj.js";
+import { Spinner } from "./components/Spinner.js";
 
 const $root = document.querySelector("#root");
+const $spinner = document.querySelector("#spinnerNew");
 
 export function App() {
   //limpiarHTML($root);
@@ -14,7 +16,7 @@ export function App() {
   //$root.appendChild(Coins());
   $root.appendChild(Loader());
 
-  Router();
+  //Router();
 
   // const $aToggle = document.querySelector("#aToggle");
 
@@ -41,11 +43,33 @@ function enventsListeners() {
 
   const $aCoinFa = document.querySelector("#aCoinFa");
   $aCoinFa.addEventListener("click", () => {
-    const entidad = new Entity("List " + "coins", "coins");
-    entidad.columns = ["Name", "Symbol", "Image"];
-    entidad.setEntities(api.COINS);
+    $spinner.appendChild(Spinner());
 
-    loadEntityFa(entidad, $root);
+    const entidad = new Entity("List " + "coins", "coins");
+    //entidad.columns = ["Name", "Symbol", "Image"];
+
+    entidad.columns = [
+      {
+        name: "Name",
+        control: "input",
+        type: "text",
+      },
+      {
+        name: "Symbol",
+        control: "input",
+        type: "text",
+      },
+      {
+        name: "Image",
+        control: "img",
+        type: "",
+      },
+    ];
+
+    entidad.setEntities(api.COINS);
+    entidad.entity = "coin";
+
+    loadEntityFa(entidad, $root, $spinner);
   });
 
   // const $btnNew = document.querySelector("#btnNew-coin");

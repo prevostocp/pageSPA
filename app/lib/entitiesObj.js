@@ -4,31 +4,31 @@ import { ajax } from "../helpers/ajax.js";
 let aObjectsEntity = [];
 const crudContext = new CrudContext("", "", "");
 
-export function loadEntityFa(ent, elementHTML) {
-  document.querySelector(".loader").style.display = "block";
+export function loadEntityFa(ent, rootHTML, spinnerHTML) {
+  limpiarHTML(rootHTML);
   ajax({
     url: ent.getEntities,
     cbSuccess: (elements) => {
       aObjectsEntity = [...elements];
 
-      createInterface(elementHTML, ent.columns, ent.title);
+      createInterface(rootHTML, ent);
+      limpiarHTML(spinnerHTML);
     },
   });
 }
 
-function createInterface(elementHTML, columns, title) {
+function createInterface(elementHTML, ent) {
   limpiarHTML(elementHTML);
   const tableStrategy = new TableStrategy();
-  // crudContext.setData(aObjectsEntity);
-  // crudContext.setElement(elementHTML);
-  // crudContext.setColumns(columns);
-  // crudContext.setStrategy(tableStrategy);
+  const { columns, title, entity } = ent;
+
   crudContext.setProps({
     strategy: tableStrategy,
     data: aObjectsEntity,
     element: elementHTML,
-    columns: columns,
-    title: title,
+    columns,
+    title,
+    entity,
   });
 
   crudContext.show();

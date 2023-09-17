@@ -6,7 +6,7 @@ export class Entity {
     this.columns = [];
     this.getCoins = api.COINS;
     this.getEntities = "";
-    this.entityName = name;
+    this.entity = name;
     this.widthForms = withForms;
 
     if (Entity.instance && Entity.id === name) {
