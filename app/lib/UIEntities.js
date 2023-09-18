@@ -30,6 +30,8 @@ function generateColumns(columns) {
 }
 
 function generateComponentsForm(columns) {
+  const $divContainerGral = document.createElement("div");
+
   const $divContainer = document.createElement("div");
   $divContainer.classList.add(
     "bg-secondary",
@@ -75,7 +77,7 @@ function generateComponentsForm(columns) {
     $divElement.classList.add(
       "d-flex",
       "align-items-center",
-      "ustify-content-between",
+      "justify-content-between",
       "mb-3"
     );
 
@@ -107,8 +109,11 @@ function generateComponentsForm(columns) {
 
   $divContainer.appendChild($btnSave);
   $divContainer.appendChild($btnCancel);
+  console.log($divContainer, "$divcontainer")
 
-  return $divContainer;
+  $divContainerGral.appendChild($divContainer)
+
+  return $divContainerGral;
 }
 
 function generateBody(elements) {
