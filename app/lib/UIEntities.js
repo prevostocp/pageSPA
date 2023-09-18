@@ -16,8 +16,7 @@ export function getFormHTML(props) {
 }
 
 export function formNewEntity(props) {
-  const htmlCampos = generateComponentsForm(props.columns);
-  console.log("Creando entidad..");
+  return generateComponentsForm(props.columns);
 }
 
 function generateColumns(columns) {
@@ -70,7 +69,6 @@ function generateComponentsForm(columns) {
   $divContainer.appendChild($divHeader);
 
   columns.forEach((element) => {
-    console.log(element);
     const { name, type, control, title } = element;
 
     const $divElement = document.createElement("div");
@@ -90,14 +88,27 @@ function generateComponentsForm(columns) {
 
     const $label = document.createElement("label");
     $label.for = $elem.id;
-    $label.innerText = title;
+    $label.innerText = name;
 
     $divElement.appendChild($elem);
     $divElement.appendChild($label);
     $divContainer.appendChild($divElement);
   });
 
-  //console.log($divContainer);
+  const $btnSave = document.createElement("button");
+  $btnSave.classList.add("btn", "btn-success", "py-3", "mb-4");
+  $btnSave.type = "submit";
+  $btnSave.innerText = "Save";
+
+  const $btnCancel = document.createElement("button");
+  $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4");
+  $btnCancel.type = "submit";
+  $btnCancel.innerText = "Cancel";
+
+  $divContainer.appendChild($btnSave);
+  $divContainer.appendChild($btnCancel);
+
+  return $divContainer;
 }
 
 function generateBody(elements) {

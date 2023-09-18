@@ -1,4 +1,5 @@
 import { getFormHTML, formNewEntity } from "./UIEntities.js";
+import { FormAddEditEmtity } from "../components/FormAddEditEntity.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
@@ -47,7 +48,14 @@ export class TableStrategy {
     props.element.appendChild(getFormHTML(props));
     const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
     $btnNew.addEventListener("click", () => {
-      formNewEntity(props);
+      const $divFormAdd = document.querySelector("#divFormAdd");
+      //console.log($divFormAdd);
+      //$divFormAdd.appendChild();
+      console.log(formNewEntity(props).innerHTML, "talestr");
+
+      props.element.innerHTML = FormAddEditEmtity(
+        formNewEntity(props).innerHTML
+      );
     });
   }
 }
