@@ -74,12 +74,7 @@ function generateComponentsForm(columns) {
     const { name, type, control, title } = element;
 
     const $divElement = document.createElement("div");
-    $divElement.classList.add(
-      "d-flex",
-      "align-items-center",
-      "justify-content-between",
-      "mb-3"
-    );
+    $divElement.classList.add("form-floating", "mb-3");
 
     const $elem = document.createElement(control);
     if (element.control === "input") {
@@ -89,8 +84,11 @@ function generateComponentsForm(columns) {
     $elem.id = name;
 
     const $label = document.createElement("label");
-    $label.for = $elem.id;
+    //$label.for = $elem.id;
+    $label.setAttribute("for", $elem.id);
     $label.innerText = name;
+
+    console.log($label, "label");
 
     $divElement.appendChild($elem);
     $divElement.appendChild($label);
@@ -109,9 +107,9 @@ function generateComponentsForm(columns) {
 
   $divContainer.appendChild($btnSave);
   $divContainer.appendChild($btnCancel);
-  console.log($divContainer, "$divcontainer")
+  console.log($divContainer, "$divcontainer");
 
-  $divContainerGral.appendChild($divContainer)
+  $divContainerGral.appendChild($divContainer);
 
   return $divContainerGral;
 }
