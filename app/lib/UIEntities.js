@@ -1,4 +1,5 @@
 import { FormEntity } from "../components/FormEntity.js";
+import { createEntity } from "./entitiesObj.js";
 
 export function getFormHTML(props) {
   const htmlColumns = generateColumns(props.columns);
@@ -51,7 +52,8 @@ function generateComponentsForm(columns) {
   );
 
   const $aHeader = document.createElement("a");
-  $aHeader.href = "index.html";
+  //$aHeader.href = "index.html";
+  $aHeader.setAttribute("href", "index.ht,l");
 
   const $h3HeaderLink = document.createElement("h3");
   $h3HeaderLink.classList.add("text-primary");
@@ -67,7 +69,7 @@ function generateComponentsForm(columns) {
   $h3Title.innerText = "Add New";
 
   $h3HeaderLink.appendChild($h3Title);
-
+  $divHeader.appendChild($aHeader)
   $divContainer.appendChild($divHeader);
 
   columns.forEach((element) => {
@@ -77,18 +79,17 @@ function generateComponentsForm(columns) {
     $divElement.classList.add("form-floating", "mb-3");
 
     const $elem = document.createElement(control);
+    $elem.id = name;
     if (element.control === "input") {
       $elem.type = type;
+      $elem.id = `input-${name}`;
     }
     $elem.classList.add("form-control");
-    $elem.id = name;
-
+  
     const $label = document.createElement("label");
     //$label.for = $elem.id;
     $label.setAttribute("for", $elem.id);
     $label.innerText = name;
-
-    console.log($label, "label");
 
     $divElement.appendChild($elem);
     $divElement.appendChild($label);
@@ -99,15 +100,22 @@ function generateComponentsForm(columns) {
   $btnSave.classList.add("btn", "btn-success", "py-3", "mb-4");
   $btnSave.type = "submit";
   $btnSave.innerText = "Save";
+  $btnSave.id = "btnSave" + columns.name;
+  // $btnSave.onclick = function () {
+  //   console.log("aca");
+  //   //createEntity("element");
+  // }
 
   const $btnCancel = document.createElement("button");
   $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4");
   $btnCancel.type = "submit";
   $btnCancel.innerText = "Cancel";
+  // $btnCancel.onclick = function () {
+  //   console.log("cancel")
+  // }
 
   $divContainer.appendChild($btnSave);
   $divContainer.appendChild($btnCancel);
-  console.log($divContainer, "$divcontainer");
 
   $divContainerGral.appendChild($divContainer);
 

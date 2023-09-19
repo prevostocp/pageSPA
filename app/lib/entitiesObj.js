@@ -17,6 +17,10 @@ export function loadEntityFa(ent, rootHTML, spinnerHTML) {
   });
 }
 
+export function createEntity(element) {
+  console.log(element);
+}
+
 function createInterface(elementHTML, ent) {
   limpiarHTML(elementHTML);
   const tableStrategy = new TableStrategy();
@@ -33,6 +37,28 @@ function createInterface(elementHTML, ent) {
 
   crudContext.show();
 }
+
+export function createInterfaceForm (ent) {
+  console.log(ent, "Volviendo")
+  limpiarHTML(ent.element);
+  const formStrategy = new FormStrategy();
+  const { columns, title, entity } = ent;
+
+  crudContext.setProps({
+    strategy: formStrategy,
+    element: ent.element,
+    columns,
+    title,
+    entity,
+  });
+
+  crudContext.show();
+}
+
+export function saveNewEntity() {
+  console.log("save new entity")
+}
+
 
 function limpiarHTML(node) {
   while (node.firstChild) {

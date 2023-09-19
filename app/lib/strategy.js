@@ -1,13 +1,10 @@
 import { getFormHTML, formNewEntity } from "./UIEntities.js";
 import { FormAddEditEmtity } from "../components/FormAddEditEntity.js";
+import { createInterfaceForm, saveNewEntity } from "./entitiesObj.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
-    // this.setStrategy(strategy);
-    // this.data = data;
-    // this.element = element;
-    // this.columns = "";
-
+   
     this.props = {
       data: "",
       strategy: "",
@@ -22,22 +19,6 @@ export class CrudContext {
     this.props = { ...props };
   }
 
-  //   setStrategy(strategy) {
-  //     this.strategy = strategy;
-  //   }
-
-  //   setData(data) {
-  //     this.data = data;
-  //   }
-
-  //   setElement(element) {
-  //     this.element = element;
-  //   }
-
-  //   setColumns(columns) {
-  //     this.columns = columns;
-  //   }
-
   show() {
     this.props.strategy.show(this.props);
   }
@@ -48,14 +29,16 @@ export class TableStrategy {
     props.element.appendChild(getFormHTML(props));
     const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
     $btnNew.addEventListener("click", () => {
-      const $divFormAdd = document.querySelector("#divFormAdd");
-      //console.log($divFormAdd);
-      //$divFormAdd.appendChild();
-      console.log(formNewEntity(props).innerHTML, "talestr");
+    
+      // props.element.innerHTML = FormAddEditEmtity(
+      //   formNewEntity(props).innerHTML
+      // );
+      // const $btnSave = document.querySelector(`#btnSave${props.name}`);
+      // $btnSave.addEventListener("click", () => {
+      //   console.log("grabandp")
+      // })
+      createInterfaceForm(props)
 
-      props.element.innerHTML = FormAddEditEmtity(
-        formNewEntity(props).innerHTML
-      );
     });
   }
 }
@@ -65,8 +48,22 @@ export class FormStrategy {
     this.large = large;
   }
 
-  show(data, element) {
-    element.appendChild = getFormHTML(data, element, this.large);
+  show(props) {
+    //element.appendChild = getFormHTML(data, element, this.large);
+    //const $btnSave = document.querySelector(`#btnSave${props.appendChild}`);
+    console.log("form strategy")
+    props.element.innerHTML = FormAddEditEmtity(
+      formNewEntity(props).innerHTML
+    );
+    const $btnSave = document.querySelector(`#btnSave${props.name}`);
+    $btnSave.addEventListener("click", () => {
+      console.log("graband new")
+      const element = {
+        name: document.querySelector(`#input-${props.name}`).value
+      } 
+      saveNewEntity();
+    })
+
   }
 }
 
