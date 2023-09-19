@@ -46,23 +46,25 @@ function enventsListeners() {
     $spinner.appendChild(Spinner());
 
     const entidad = new Entity("List " + "coins", "coins");
-    //entidad.columns = ["Name", "Symbol", "Image"];
 
     entidad.columns = [
       {
         name: "Name",
         control: "input",
         type: "text",
+        value: "",
       },
       {
         name: "Symbol",
         control: "input",
         type: "text",
+        value: "",
       },
       {
         name: "Image",
         control: "img",
         type: "",
+        value: "",
       },
     ];
 
@@ -71,9 +73,6 @@ function enventsListeners() {
 
     loadEntityFa(entidad, $root, $spinner);
   });
-
-  // const $btnNew = document.querySelector("#btnNew-coin");
-  // $btnNew.addEventListener("click");
 }
 
 function createABM(strategy) {

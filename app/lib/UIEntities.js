@@ -69,7 +69,7 @@ function generateComponentsForm(columns) {
   $h3Title.innerText = "Add New";
 
   $h3HeaderLink.appendChild($h3Title);
-  $divHeader.appendChild($aHeader)
+  $divHeader.appendChild($aHeader);
   $divContainer.appendChild($divHeader);
 
   columns.forEach((element) => {
@@ -80,14 +80,13 @@ function generateComponentsForm(columns) {
 
     const $elem = document.createElement(control);
     $elem.id = name;
-    if (element.control === "input") {
+    if (control === "input") {
       $elem.type = type;
       $elem.id = `input-${name}`;
     }
-    $elem.classList.add("form-control");
-  
+    $elem.classList.add("form-control", "element");
+
     const $label = document.createElement("label");
-    //$label.for = $elem.id;
     $label.setAttribute("for", $elem.id);
     $label.innerText = name;
 
@@ -101,18 +100,11 @@ function generateComponentsForm(columns) {
   $btnSave.type = "submit";
   $btnSave.innerText = "Save";
   $btnSave.id = "btnSave" + columns.name;
-  // $btnSave.onclick = function () {
-  //   console.log("aca");
-  //   //createEntity("element");
-  // }
 
   const $btnCancel = document.createElement("button");
   $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4");
   $btnCancel.type = "submit";
   $btnCancel.innerText = "Cancel";
-  // $btnCancel.onclick = function () {
-  //   console.log("cancel")
-  // }
 
   $divContainer.appendChild($btnSave);
   $divContainer.appendChild($btnCancel);

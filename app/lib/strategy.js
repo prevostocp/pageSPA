@@ -4,7 +4,6 @@ import { createInterfaceForm, saveNewEntity } from "./entitiesObj.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
-   
     this.props = {
       data: "",
       strategy: "",
@@ -29,16 +28,7 @@ export class TableStrategy {
     props.element.appendChild(getFormHTML(props));
     const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
     $btnNew.addEventListener("click", () => {
-    
-      // props.element.innerHTML = FormAddEditEmtity(
-      //   formNewEntity(props).innerHTML
-      // );
-      // const $btnSave = document.querySelector(`#btnSave${props.name}`);
-      // $btnSave.addEventListener("click", () => {
-      //   console.log("grabandp")
-      // })
-      createInterfaceForm(props)
-
+      createInterfaceForm(props);
     });
   }
 }
@@ -49,21 +39,19 @@ export class FormStrategy {
   }
 
   show(props) {
-    //element.appendChild = getFormHTML(data, element, this.large);
-    //const $btnSave = document.querySelector(`#btnSave${props.appendChild}`);
-    console.log("form strategy")
-    props.element.innerHTML = FormAddEditEmtity(
-      formNewEntity(props).innerHTML
-    );
+    props.element.innerHTML = FormAddEditEmtity(formNewEntity(props).innerHTML);
     const $btnSave = document.querySelector(`#btnSave${props.name}`);
     $btnSave.addEventListener("click", () => {
-      console.log("graband new")
-      const element = {
-        name: document.querySelector(`#input-${props.name}`).value
-      } 
-      saveNewEntity();
-    })
+      const $elements = document.querySelectorAll(".element");
+      console.log(props, "props");
+      const aElements = Array.from($elements);
+      aElements.forEach((e) => {
+        props.columns[e.name] = e.value;
+        console.log(e.id);
+      });
 
+      saveNewEntity();
+    });
   }
 }
 
