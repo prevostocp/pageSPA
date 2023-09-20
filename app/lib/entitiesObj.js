@@ -38,8 +38,8 @@ function createInterface(elementHTML, ent) {
   crudContext.show();
 }
 
-export function createInterfaceForm (ent) {
-  console.log(ent, "Volviendo")
+export function createInterfaceForm(ent) {
+  console.log(ent, "Volviendo");
   limpiarHTML(ent.element);
   const formStrategy = new FormStrategy();
   const { columns, title, entity } = ent;
@@ -56,9 +56,8 @@ export function createInterfaceForm (ent) {
 }
 
 export function saveNewEntity() {
-  console.log("save new entity")
+  console.log("save new entity");
 }
-
 
 function limpiarHTML(node) {
   while (node.firstChild) {

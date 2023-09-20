@@ -53,7 +53,7 @@ function generateComponentsForm(columns) {
 
   const $aHeader = document.createElement("a");
   //$aHeader.href = "index.html";
-  $aHeader.setAttribute("href", "index.ht,l");
+  $aHeader.setAttribute("href", "index.html");
 
   const $h3HeaderLink = document.createElement("h3");
   $h3HeaderLink.classList.add("text-primary");
@@ -75,7 +75,7 @@ function generateComponentsForm(columns) {
   columns.forEach((element) => {
     const { name, type, control, title } = element;
 
-    switch(control) {
+    switch (control) {
       case "input":
         $divContainer.appendChild(createInput(name, type));
         break;
@@ -83,6 +83,8 @@ function generateComponentsForm(columns) {
         $divContainer.appendChild(createImg(name, ""));
         break;
     }
+
+    //console.log($divContainer);
 
     // const $divElement = document.createElement("div");
     // $divElement.classList.add("form-floating", "mb-3");
@@ -101,17 +103,25 @@ function generateComponentsForm(columns) {
 
     // $divElement.appendChild($elem);
     // $divElement.appendChild($label);
-    //$divContainer.appendChild($divElement);
+    // $divContainer.appendChild($divElement);
   });
 
   const $btnSave = document.createElement("button");
-  $btnSave.classList.add("btn", "btn-success", "py-3", "mb-4");
+  $btnSave.classList.add(
+    "btn",
+    "btn-success",
+    "py-3",
+    "px-10",
+    "mb-4",
+    "mx-1",
+    "mt-3"
+  );
   $btnSave.type = "submit";
   $btnSave.innerText = "Save";
   $btnSave.id = "btnSave" + columns.name;
 
   const $btnCancel = document.createElement("button");
-  $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4");
+  $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4", "mx-1", "mt-3");
   $btnCancel.type = "submit";
   $btnCancel.innerText = "Cancel";
 
@@ -153,7 +163,7 @@ function createInput(name, type) {
   const $elem = document.createElement("input");
   $elem.type = type;
   $elem.id = `input-${name}`;
-  
+
   $elem.classList.add("form-control", "element");
 
   const $label = document.createElement("label");
@@ -168,10 +178,10 @@ function createInput(name, type) {
 
 function createImg(name, src = "#") {
   const $divElement = document.createElement("div");
- 
+
   const $elem = document.createElement("img");
   $elem.id = `img-${name}`;
-  $elem.classList.add("form-control", "element");
+  $elem.classList.add("element");
   $elem.setAttribute("src", src);
   $elem.setAttribute("alt", `image-${name}`);
 
