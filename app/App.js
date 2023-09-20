@@ -61,6 +61,12 @@ function enventsListeners() {
         value: "",
       },
       {
+        name: "pathImg",
+        control: "input",
+        type: "file",
+        value: "",
+      },
+      {
         name: "Image",
         control: "img",
         type: "",

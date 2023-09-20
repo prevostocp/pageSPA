@@ -75,24 +75,33 @@ function generateComponentsForm(columns) {
   columns.forEach((element) => {
     const { name, type, control, title } = element;
 
-    const $divElement = document.createElement("div");
-    $divElement.classList.add("form-floating", "mb-3");
-
-    const $elem = document.createElement(control);
-    $elem.id = name;
-    if (control === "input") {
-      $elem.type = type;
-      $elem.id = `input-${name}`;
+    switch(control) {
+      case "input":
+        $divContainer.appendChild(createInput(name, type));
+        break;
+      case "img":
+        $divContainer.appendChild(createImg(name, ""));
+        break;
     }
-    $elem.classList.add("form-control", "element");
 
-    const $label = document.createElement("label");
-    $label.setAttribute("for", $elem.id);
-    $label.innerText = name;
+    // const $divElement = document.createElement("div");
+    // $divElement.classList.add("form-floating", "mb-3");
 
-    $divElement.appendChild($elem);
-    $divElement.appendChild($label);
-    $divContainer.appendChild($divElement);
+    // const $elem = document.createElement(control);
+    // $elem.id = name;
+    // if (control === "input") {
+    //   $elem.type = type;
+    //   $elem.id = `input-${name}`;
+    // }
+    // $elem.classList.add("form-control", "element");
+
+    // const $label = document.createElement("label");
+    // $label.setAttribute("for", $elem.id);
+    // $label.innerText = name;
+
+    // $divElement.appendChild($elem);
+    // $divElement.appendChild($label);
+    //$divContainer.appendChild($divElement);
   });
 
   const $btnSave = document.createElement("button");
@@ -135,6 +144,40 @@ function generateBody(elements) {
   } catch (error) {
     return error;
   }
+}
+
+function createInput(name, type) {
+  const $divElement = document.createElement("div");
+  $divElement.classList.add("form-floating", "mb-3");
+
+  const $elem = document.createElement("input");
+  $elem.type = type;
+  $elem.id = `input-${name}`;
+  
+  $elem.classList.add("form-control", "element");
+
+  const $label = document.createElement("label");
+  $label.setAttribute("for", $elem.id);
+  $label.innerText = name;
+
+  $divElement.appendChild($elem);
+  $divElement.appendChild($label);
+
+  return $divElement;
+}
+
+function createImg(name, src = "#") {
+  const $divElement = document.createElement("div");
+ 
+  const $elem = document.createElement("img");
+  $elem.id = `img-${name}`;
+  $elem.classList.add("form-control", "element");
+  $elem.setAttribute("src", src);
+  $elem.setAttribute("alt", `image-${name}`);
+
+  $divElement.appendChild($elem);
+
+  return $divElement;
 }
 
 function renderContainer(html) {
