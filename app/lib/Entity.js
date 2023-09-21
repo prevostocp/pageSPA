@@ -7,6 +7,7 @@ export class Entity {
     this.values = [];
     this.getCoins = api.COINS;
     this.getEntities = "";
+    //this.addUrl = "";
     this.entity = name;
     this.widthForms = withForms;
 
@@ -25,4 +26,8 @@ export class Entity {
   setEntities(url) {
     this.getEntities = url;
   }
+
+  // setEntityUrl(url) {
+  //   this.addEnityUrl = url;
+  // }
 }

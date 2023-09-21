@@ -11,7 +11,8 @@ export class CrudContext {
       columns: "",
       title: "",
       entity: "",
-      values: []
+      values: [],
+      addUrl: "",
     };
   }
 
@@ -49,17 +50,11 @@ export class FormStrategy {
     const $btnSave = document.querySelector(`#btnSave${props.name}`);
     $btnSave.addEventListener("click", () => {
       const $elements = document.querySelectorAll(".element");
-      //console.log(props, "props");
+
       const aElements = Array.from($elements);
-      //console.log(aElements);
+
       aElements.forEach((e) => {
-        //props.columns[e.name] = e.value;
-        //props.columns[0][e.name] = e.value;
         props.values[e.name.toLowerCase()] = e.value;
-       
-        console.log(props.values[e.name.toLowerCase()], "llave");
-        //console.log(e.name.toLowerCase(), "llave");
-       
       });
 
       saveNewEntity(props);

@@ -60,41 +60,38 @@ function enventsListeners() {
         type: "text",
         value: "",
       },
-      {
-        name: "pathImg",
-        control: "input",
-        type: "file",
-        value: "",
-      },
-      {
-        name: "Image",
-        control: "img",
-        type: "",
-        value: "",
-      },
+      // {
+      //   name: "pathImg",
+      //   control: "input",
+      //   type: "file",
+      //   value: "",
+      // },
+      // {
+      //   name: "Image",
+      //   control: "img",
+      //   type: "",
+      //   value: "",
+      // },
     ];
 
     entidad.values = {
       name: "",
       symbol: "",
-      pathImg: ""
-    }
+      //pathImg: "",
+    };
 
     entidad.setEntities(api.COINS);
+    //entidad.setEntityUrl()
     entidad.entity = "coin";
 
     loadEntityFa(entidad, $root, $spinner);
   });
 
-
   window.addEventListener("click", (e) => {
-    console.log(e.target.dataset.entidad)
-
-    if(e.target.dataset.entidad !== undefined) {
-        console.log(e.target.dataset.id)
-        if(e.target.dataset.action === "delete") {
-          deleteElement(e.target.dataset.entidad, e.target.dataset.id);
-        }
+    if (e.target.dataset.entidad !== undefined) {
+      if (e.target.dataset.action === "delete") {
+        deleteElement(e.target.dataset.entidad, e.target.dataset.id);
+      }
     }
   });
 }

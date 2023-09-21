@@ -19,17 +19,15 @@ export function loadEntityFa(ent, rootHTML, spinnerHTML) {
 }
 
 export function createEntity(element) {
-  console.log(element);
+  //console.log(element);
 }
 
-export function deleteElement(entidad, id) {
-  
-}
+export function deleteElement(entidad, id) {}
 
 function createInterface(elementHTML, ent) {
   limpiarHTML(elementHTML);
   const tableStrategy = new TableStrategy();
-  const { columns, title, entity, values } = ent;
+  const { columns, title, entity, values, addUrl } = ent;
 
   crudContext.setProps({
     strategy: tableStrategy,
@@ -38,17 +36,17 @@ function createInterface(elementHTML, ent) {
     columns,
     title,
     entity,
-    values
+    values,
+    addUrl,
   });
 
   crudContext.show();
 }
 
 export function createInterfaceForm(ent) {
-  console.log(ent, "Volviendo");
   limpiarHTML(ent.element);
   const formStrategy = new FormStrategy();
-  const { columns, title, entity, values } = ent;
+  const { columns, title, entity, values, addUrl } = ent;
 
   crudContext.setProps({
     strategy: formStrategy,
@@ -56,29 +54,29 @@ export function createInterfaceForm(ent) {
     columns,
     title,
     entity,
-    values
+    values,
+    addUrl,
   });
 
   crudContext.show();
 }
 
 export function saveNewEntity(props) {
-  console.log(props.values, "Desde Save");
   let options = {
-    method: 'POST',
+    method: "POST",
     headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+      "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify(props.values)
-  }
-
-  ajax({
-    url: ent.postEntities,
-    options: options,
-    cbSuccess: (result) => {
-      console.log(result)
-    },
-  });
+    body: JSON.stringify(props.values),
+  };
+  console.log(props);
+  // ajax({
+  //   url: props.entity.getEntities,
+  //   options: options,
+  //   cbSuccess: (result) => {
+  //     console.log(result);
+  //   },
+  // });
 }
 
 function limpiarHTML(node) {
