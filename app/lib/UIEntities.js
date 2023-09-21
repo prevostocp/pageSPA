@@ -163,6 +163,7 @@ function createInput(name, type) {
   const $elem = document.createElement("input");
   $elem.type = type;
   $elem.id = `input-${name}`;
+  $elem.name = name;
 
   $elem.classList.add("form-control", "element");
 

@@ -43,14 +43,14 @@ export class FormStrategy {
     const $btnSave = document.querySelector(`#btnSave${props.name}`);
     $btnSave.addEventListener("click", () => {
       const $elements = document.querySelectorAll(".element");
-      console.log(props, "props");
+      //console.log(props, "props");
       const aElements = Array.from($elements);
       aElements.forEach((e) => {
-        props.columns[e.name] = e.value;
-        console.log(e.id);
+        //props.columns[e.name] = e.value;
+        console.log(props.columns[e.name]);
       });
 
-      saveNewEntity();
+      //saveNewEntity();
     });
   }
 }

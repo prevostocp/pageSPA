@@ -49,13 +49,13 @@ function enventsListeners() {
 
     entidad.columns = [
       {
-        name: "Name",
+        name: "name",
         control: "input",
         type: "text",
         value: "",
       },
       {
-        name: "Symbol",
+        name: "symbol",
         control: "input",
         type: "text",
         value: "",
@@ -67,7 +67,7 @@ function enventsListeners() {
         value: "",
       },
       {
-        name: "Image",
+        name: "image",
         control: "img",
         type: "",
         value: "",
