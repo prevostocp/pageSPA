@@ -4,6 +4,7 @@ export class Entity {
   constructor(title, name, withForms = 6) {
     this.title = title;
     this.columns = [];
+    this.values = [];
     this.getCoins = api.COINS;
     this.getEntities = "";
     this.entity = name;

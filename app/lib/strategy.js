@@ -11,6 +11,7 @@ export class CrudContext {
       columns: "",
       title: "",
       entity: "",
+      values: []
     };
   }
 
@@ -30,6 +31,11 @@ export class TableStrategy {
     $btnNew.addEventListener("click", () => {
       createInterfaceForm(props);
     });
+
+    //const $btnEdit = document.querySelector(`.btnEdit`);
+    // $btnEdit.addEventListener("click", (e) => {
+    //   console.log("Modificando", e.target.id);
+    // })
   }
 }
 
@@ -48,11 +54,15 @@ export class FormStrategy {
       //console.log(aElements);
       aElements.forEach((e) => {
         //props.columns[e.name] = e.value;
-        //console.log(props.columns[0][e.name]);
-        console.log(e.name);
+        //props.columns[0][e.name] = e.value;
+        props.values[e.name.toLowerCase()] = e.value;
+       
+        console.log(props.values[e.name.toLowerCase()], "llave");
+        //console.log(e.name.toLowerCase(), "llave");
+       
       });
 
-      //saveNewEntity();
+      saveNewEntity(props);
     });
   }
 }

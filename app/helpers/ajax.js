@@ -1,7 +1,7 @@
 export function ajax(props) {
-  let { url, method, header, cbSuccess } = props;
+  let { url, options, cbSuccess } = props;
 
-  fetch(url)
+  fetch(url, options)
     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
     .then((json) => cbSuccess(json))
     .catch((err) => {
@@ -11,6 +11,6 @@ export function ajax(props) {
           <p>Error ${err.status} : ${message} </p>
         </div>
       `;
-      document.querySelector(".loader").style.display = "none";
+      //document.querySelector(".loader").style.display = "none";
     });
 }

@@ -49,13 +49,13 @@ function enventsListeners() {
 
     entidad.columns = [
       {
-        name: "name",
+        name: "Name",
         control: "input",
         type: "text",
         value: "",
       },
       {
-        name: "symbol",
+        name: "Symbol",
         control: "input",
         type: "text",
         value: "",
@@ -67,17 +67,35 @@ function enventsListeners() {
         value: "",
       },
       {
-        name: "image",
+        name: "Image",
         control: "img",
         type: "",
         value: "",
       },
     ];
 
+    entidad.values = {
+      name: "",
+      symbol: "",
+      pathImg: ""
+    }
+
     entidad.setEntities(api.COINS);
     entidad.entity = "coin";
 
     loadEntityFa(entidad, $root, $spinner);
+  });
+
+
+  window.addEventListener("click", (e) => {
+    console.log(e.target.dataset.entidad)
+
+    if(e.target.dataset.entidad !== undefined) {
+        console.log(e.target.dataset.id)
+        if(e.target.dataset.action === "delete") {
+          deleteElement(e.target.dataset.entidad, e.target.dataset.id);
+        }
+    }
   });
 }
 
