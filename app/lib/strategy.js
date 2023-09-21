@@ -45,9 +45,11 @@ export class FormStrategy {
       const $elements = document.querySelectorAll(".element");
       //console.log(props, "props");
       const aElements = Array.from($elements);
+      //console.log(aElements);
       aElements.forEach((e) => {
         //props.columns[e.name] = e.value;
-        console.log(props.columns[e.name]);
+        //console.log(props.columns[0][e.name]);
+        console.log(e.name);
       });
 
       //saveNewEntity();
