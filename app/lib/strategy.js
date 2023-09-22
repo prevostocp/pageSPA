@@ -29,6 +29,7 @@ export class TableStrategy {
   show(props) {
     props.element.appendChild(getFormHTML(props));
     const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
+
     $btnNew.addEventListener("click", () => {
       createInterfaceForm(props);
     });

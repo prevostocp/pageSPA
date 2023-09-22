@@ -27,7 +27,7 @@ export function deleteElement(entidad, id) {}
 function createInterface(elementHTML, ent) {
   limpiarHTML(elementHTML);
   const tableStrategy = new TableStrategy();
-  const { columns, title, entity, values, addUrl } = ent;
+  const { columns, title, entity, values, getEntities } = ent;
 
   crudContext.setProps({
     strategy: tableStrategy,
@@ -37,7 +37,7 @@ function createInterface(elementHTML, ent) {
     title,
     entity,
     values,
-    addUrl,
+    addUrl: getEntities,
   });
 
   crudContext.show();
@@ -69,14 +69,14 @@ export function saveNewEntity(props) {
     },
     body: JSON.stringify(props.values),
   };
-  console.log(props);
-  // ajax({
-  //   url: props.entity.getEntities,
-  //   options: options,
-  //   cbSuccess: (result) => {
-  //     console.log(result);
-  //   },
-  // });
+
+  ajax({
+    url: props.addUrl,
+    options: options,
+    cbSuccess: (result) => {
+      console.log(result);
+    },
+  });
 }
 
 function limpiarHTML(node) {
