@@ -3,7 +3,7 @@ import { Router } from "./components/Router.js";
 import { factoryEntity } from "./lib/entities.js";
 import { Entity } from "./lib/Entity.js";
 import api from "./helpers/ic_app.js";
-import { loadEntityFa } from "./lib/entitiesObj.js";
+import { loadEntityFa, editElement, deleteElement } from "./lib/entitiesObj.js";
 import { Spinner } from "./components/Spinner.js";
 
 const $root = document.querySelector("#root");
@@ -90,7 +90,18 @@ function enventsListeners() {
   window.addEventListener("click", (e) => {
     if (e.target.dataset.entidad !== undefined) {
       if (e.target.dataset.action === "delete") {
-        deleteElement(e.target.dataset.entidad, e.target.dataset.id);
+
+        const datos = {
+          entidad: e.target.dataset.entidad,
+          dataset: e.target.dataset.id,
+          elementHTML: $root,
+          spinner: $spinner
+        }
+
+
+        deleteElement(datos);
+      } else (e.target.dat.action === "edit") {
+        editElement(e.target.dataset.entidad, e.target.dataset.id);
       }
     }
   });
