@@ -89,18 +89,19 @@ function enventsListeners() {
 
   window.addEventListener("click", (e) => {
     if (e.target.dataset.entidad !== undefined) {
+      const entidad = new Entity("List " + "coins", "coins");
+      entidad.setEntities(api.COINS);
       if (e.target.dataset.action === "delete") {
-
         const datos = {
           entidad: e.target.dataset.entidad,
-          dataset: e.target.dataset.id,
+          id: e.target.dataset.id,
           elementHTML: $root,
-          spinner: $spinner
-        }
-
+          spinner: $spinner,
+          url: entidad.getEntities,
+        };
 
         deleteElement(datos);
-      } else (e.target.dat.action === "edit") {
+      } else if (e.target.dat.action === "edit") {
         editElement(e.target.dataset.entidad, e.target.dataset.id);
       }
     }

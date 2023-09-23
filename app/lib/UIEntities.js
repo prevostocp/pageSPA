@@ -1,5 +1,5 @@
 import { FormEntity } from "../components/FormEntity.js";
-import { createEntity } from "./entitiesObj.js";
+//mport { createEntity } from "./entitiesObj.js";
 
 export function getFormHTML(props) {
   const htmlColumns = generateColumns(props.columns);
@@ -136,16 +136,16 @@ function generateComponentsForm(columns) {
 function generateBody(elements, entidd = "coin") {
   try {
     const html = elements.reduce((ac, element) => {
-      const { id_coin, name, symbol, image } = element;
-      
+      const { coin_id, name, symbol, image } = element;
+
       return (ac += `
         <tr>
 
         <td><div class="m-2">${name}</div></td>
         <td><div class="m-2">${symbol}</div></td>
         <td><img src="${image}" alt="" class="m-2" /></td>
-        <td><button data-entidad = "coin" data-id = ${id_coin} data-action = "delete" class="btn btn-outline-danger m-2" id="btnDelete-${id_coin}" >Delete</botton></td>
-        <td><button data-entidad = "coin" data-id = ${id_coin} data-action = "edit" class="btn btn-outline-danger m-2" id="btnEdit-${id_coin}">Edit</botton></td>
+        <td><button data-entidad = "coin" data-id = "${coin_id}" data-action = "delete" class="btn btn-outline-danger m-2" id="btnDelete-${coin_id}" >Delete</botton></td>
+        <td><button data-entidad = "coin" data-id = "${coin_id}" data-action = "edit" class="btn btn-outline-danger m-2" id="btnEdit-${coin_id}">Edit</botton></td>
         </tr>
         `);
     }, "");

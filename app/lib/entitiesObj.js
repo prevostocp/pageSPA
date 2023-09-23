@@ -19,35 +19,40 @@ export function loadEntityFa(ent, rootHTML, spinnerHTML) {
 }
 
 //export function createEntity(element) {
-  //console.log(element);
+//console.log(element);
 //}
 
 export function deleteElement(data) {
+  const { url, id, entidad, elementHTML, spinner } = data;
+
   let options = {
     method: "DELETE",
   };
+  console.log(url + "/" + id);
   ajax({
-    url: props.addUrl + "/" + id,
+    url: url + "/" + id,
     options: options,
     cbSuccess: (result) => {
       console.log(result);
       //aOjectTemp = aObjectsEntity.filter(e => e.id_codigo !== id);
       //aObjectsEntity = [...aOjectTemp];
-      loadEntityFa(data.entidad, data.elementHTML, data.spinner);
+      //loadEntityFa(data.entidad, data.elementHTML, data.spinner);
     },
   });
-  console.log("eliminando")
+  //console.log("eliminando");
 }
 
 export function editElement(entidad, element) {
-  console.log("editando")
-  aOjectTemp = aObjectsEntity.map(e => e.id_coin === element.id_coin ? element : e );
+  console.log("editando");
+  aOjectTemp = aObjectsEntity.map((e) =>
+    e.id_coin === element.id_coin ? element : e
+  );
   aObjectsEntity = [...aOjectTemp];
 
   let options = {
     method: "PUT",
     headers: {
-      "Content-Type": 'application/json; charset=UTF-8',
+      "Content-Type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify(aObjectsEntity),
   };
