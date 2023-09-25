@@ -49,7 +49,7 @@ export function deleteElement(data) {
 export function editElement(entidad, element) {
   const aObjectsEntityTemp = aObjectsEntity.find((e) => e.id === element);
 
-  createInterfaceForm(objEntity);
+  createInterfaceForm(entidad);
 
   console.log("editando");
   // aOjectTemp = aObjectsEntity.map((e) =>
