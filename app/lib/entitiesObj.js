@@ -150,7 +150,7 @@ export function saveNewEntity(props) {
   });
 }
 
-export function saveEntity(props) {
+export function saveEntity(props, action) {
   let options = {
     method: props.method,
     headers: {
@@ -160,7 +160,7 @@ export function saveEntity(props) {
   };
 
   ajax({
-    url: props.getEntities,
+    url: action === "A" ? props.getEntities : props.putEntitie + "/" + props.id,
     options: options,
     cbSuccess: (result) => {
       limpiarHTML(props.elements.root);
