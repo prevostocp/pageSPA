@@ -4,15 +4,20 @@ import { createInterfaceForm, saveNewEntity } from "./entitiesObj.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
+    // this.props = {
+    //   data: "",
+    //   strategy: "",
+    //   element: "",
+    //   columns: "",
+    //   title: "",
+    //   entity: "",
+    //   values: [],
+    //   addUrl: "",
+    //   objEntity: null,
+    // };
+
     this.props = {
-      data: "",
-      strategy: "",
-      element: "",
-      columns: "",
-      title: "",
-      entity: "",
-      values: [],
-      addUrl: "",
+      objEntity: null,
     };
   }
 
@@ -27,11 +32,17 @@ export class CrudContext {
 
 export class TableStrategy {
   show(props) {
-    props.element.appendChild(getFormHTML(props));
-    const $btnNew = document.querySelector(`#btnNew-${props.entity}`);
+    const { objEntity } = props;
+
+    //props.element.appendChild(getFormHTML(props));
+
+    objEntity.elements.root.appendChild(getFormHTML(objEntity));
+
+    const $btnNew = document.querySelector(`#btnNew-${objEntity.entity}`);
 
     $btnNew.addEventListener("click", () => {
-      createInterfaceForm(props);
+      objEntity.method = "POST";
+      createInterfaceForm(objEntity);
     });
 
     //const $btnEdit = document.querySelector(`.btnEdit`);
@@ -47,18 +58,22 @@ export class FormStrategy {
   }
 
   show(props) {
-    props.element.innerHTML = FormAddEditEmtity(formNewEntity(props).innerHTML);
-    const $btnSave = document.querySelector(`#btnSave${props.name}`);
+    const { objEntity } = props;
+
+    objEntity.elements.root.innerHTML = FormAddEditEmtity(
+      formNewEntity(objEntity).innerHTML
+    );
+    const $btnSave = document.querySelector(`#btnSave${objEntity.name}`);
     $btnSave.addEventListener("click", () => {
       const $elements = document.querySelectorAll(".element");
 
       const aElements = Array.from($elements);
 
       aElements.forEach((e) => {
-        props.values[e.name.toLowerCase()] = e.value;
+        objEntity.values[e.name.toLowerCase()] = e.value;
       });
 
-      saveNewEntity(props);
+      saveNewEntity(objEntity);
     });
   }
 }

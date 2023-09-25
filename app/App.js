@@ -1,5 +1,4 @@
 import { Loader } from "./components/Loader.js";
-import { Router } from "./components/Router.js";
 import { factoryEntity } from "./lib/entities.js";
 import { Entity } from "./lib/Entity.js";
 import api from "./helpers/ic_app.js";
@@ -10,28 +9,7 @@ const $root = document.querySelector("#root");
 const $spinner = document.querySelector("#spinnerNew");
 
 export function App() {
-  //limpiarHTML($root);
-
-  //$root.appendChild(Container());
-  //$root.appendChild(Coins());
   $root.appendChild(Loader());
-
-  //Router();
-
-  // const $aToggle = document.querySelector("#aToggle");
-
-  // $aToggle.addEventListener("click", () => {
-  //   const $existeOpen = document.querySelector(".open");
-  //   const $content = document.querySelector(".content");
-  //   const $sidebar = document.querySelector(".sidebar");
-  //   if (!$existeOpen) {
-  //     $content.classList.add("open");
-  //     $sidebar.classList.add("open");
-  //   } else {
-  //     $content.classList.remove("open");
-  //     $sidebar.classList.remove("open");
-  //   }
-  // });
   enventsListeners();
 }
 
@@ -44,7 +22,46 @@ function enventsListeners() {
   const $aCoinFa = document.querySelector("#aCoinFa");
   $aCoinFa.addEventListener("click", () => {
     $spinner.appendChild(Spinner());
+    const entidad = createEntidad("coin", {
+      root: $root,
+      spinner: $spinner,
+    });
+    loadEntityFa(entidad);
+  });
 
+  window.addEventListener("click", (e) => {
+    if (e.target.dataset.entidad !== undefined) {
+      // const entidad = new Entity("List " + "coins", "coins");
+      // entidad.setEntities(api.COINS);
+      const entidad = createEntidad("coin", {
+        root: $root,
+        spinner: $spinner,
+      });
+      if (e.target.dataset.action === "delete") {
+        const datos = {
+          entidad: e.target.dataset.entidad,
+          id: e.target.dataset.id,
+          elementHTML: $root,
+          spinner: $spinner,
+          entidad: entidad,
+        };
+
+        deleteElement(datos);
+      } else if (e.target.dataset.action === "edit") {
+        entidad.method = "PUT";
+        editElement(entidad, e.target.dataset.id);
+      }
+    }
+  });
+}
+
+function createABM(strategy) {
+  const crudContext = new CrudContext(strategy, aObjectsEntity, $root);
+  crudContext.show();
+}
+
+function createEntidad(name, elements) {
+  if (name === "coin") {
     const entidad = new Entity("List " + "coins", "coins");
 
     entidad.columns = [
@@ -80,41 +97,15 @@ function enventsListeners() {
       //pathImg: "",
     };
 
+    entidad.elements = {
+      root: elements.root,
+      spinner: elements.spinner,
+    };
+
     entidad.setEntities(api.COINS);
     //entidad.setEntityUrl()
     entidad.entity = "coin";
 
-    loadEntityFa(entidad, $root, $spinner);
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target.dataset.entidad !== undefined) {
-      const entidad = new Entity("List " + "coins", "coins");
-      entidad.setEntities(api.COINS);
-      if (e.target.dataset.action === "delete") {
-        const datos = {
-          entidad: e.target.dataset.entidad,
-          id: e.target.dataset.id,
-          elementHTML: $root,
-          spinner: $spinner,
-          url: entidad.getEntities,
-        };
-
-        deleteElement(datos);
-      } else if (e.target.dat.action === "edit") {
-        editElement(e.target.dataset.entidad, e.target.dataset.id);
-      }
-    }
-  });
+    return entidad;
+  }
 }
-
-function createABM(strategy) {
-  const crudContext = new CrudContext(strategy, aObjectsEntity, $root);
-  crudContext.show();
-}
-
-// function limpiarHTML(node) {
-//   while (node.firstChild) {
-//     node.remove(node.firstChild);
-//   }
-// }

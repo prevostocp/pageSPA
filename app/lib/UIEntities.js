@@ -73,7 +73,7 @@ function generateComponentsForm(columns) {
   $divContainer.appendChild($divHeader);
 
   columns.forEach((element) => {
-    const { name, type, control, title } = element;
+    const { name, type, control, title, value } = element;
 
     switch (control) {
       case "input":
@@ -156,7 +156,7 @@ function generateBody(elements, entidd = "coin") {
   }
 }
 
-function createInput(name, type) {
+function createInput(name, type, value) {
   const $divElement = document.createElement("div");
   $divElement.classList.add("form-floating", "mb-3");
 
@@ -164,6 +164,7 @@ function createInput(name, type) {
   $elem.type = type;
   $elem.id = `input-${name}`;
   $elem.name = name;
+  $elem.value = value;
 
   $elem.classList.add("form-control", "element");
 
