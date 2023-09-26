@@ -47,11 +47,14 @@ export function deleteElement(data) {
 }
 
 export function editElement(entidad, element) {
-  const aObjectsEntityTemp = aObjectsEntity.find((e) => e.id === element);
+  const aObjectsEntityTemp = aObjectsEntity.find(
+    (e) => e.coin_id === parseInt(element)
+  );
+
+  entidad.values = { ...aObjectsEntityTemp };
 
   createInterfaceForm(entidad);
 
-  console.log("editando");
   // aOjectTemp = aObjectsEntity.map((e) =>
   //   e.id_coin === element.id_coin ? element : e
   // );

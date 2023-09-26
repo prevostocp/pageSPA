@@ -17,7 +17,8 @@ export function getFormHTML(props) {
 }
 
 export function formNewEntity(props) {
-  return generateComponentsForm(props.columns);
+  console.log(props, "formNewEntity");
+  return generateComponentsForm(props);
 }
 
 function generateColumns(columns) {
@@ -30,7 +31,7 @@ function generateColumns(columns) {
   return html;
 }
 
-function generateComponentsForm(columns) {
+function generateComponentsForm(props) {
   const $divContainerGral = document.createElement("div");
 
   const $divContainer = document.createElement("div");
@@ -72,12 +73,13 @@ function generateComponentsForm(columns) {
   $divHeader.appendChild($aHeader);
   $divContainer.appendChild($divHeader);
 
-  columns.forEach((element) => {
-    const { name, type, control, title, value } = element;
+  props.columns.forEach((element) => {
+    const { name, type, control } = element;
+    const value = props.values[name.toLowerCase()];
 
     switch (control) {
       case "input":
-        $divContainer.appendChild(createInput(name, type));
+        $divContainer.appendChild(createInput(name, type, value));
         break;
       case "img":
         $divContainer.appendChild(createImg(name, ""));
@@ -118,7 +120,7 @@ function generateComponentsForm(columns) {
   );
   $btnSave.type = "submit";
   $btnSave.innerText = "Save";
-  $btnSave.id = "btnSave" + columns.name;
+  $btnSave.id = "btnSave" + props.columns.name;
 
   const $btnCancel = document.createElement("button");
   $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4", "mx-1", "mt-3");
@@ -165,6 +167,7 @@ function createInput(name, type, value) {
   $elem.id = `input-${name}`;
   $elem.name = name;
   $elem.value = value;
+  console.log($elem.value);
 
   $elem.classList.add("form-control", "element");
 
