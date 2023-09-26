@@ -49,6 +49,7 @@ function enventsListeners() {
         deleteElement(datos);
       } else if (e.target.dataset.action === "edit") {
         entidad.method = "PUT";
+        
         editElement(entidad, e.target.dataset.id);
       }
     }
