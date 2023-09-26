@@ -1,5 +1,5 @@
-import { Loader } from "./components/Loader.js";
-import { factoryEntity } from "./lib/entities.js";
+//import { Loader } from "./components/Loader.js";
+//import { factoryEntity } from "./lib/entities.js";
 import { Entity } from "./lib/Entity.js";
 import api from "./helpers/ic_app.js";
 import { loadEntityFa, editElement, deleteElement } from "./lib/entitiesObj.js";
@@ -9,15 +9,15 @@ const $root = document.querySelector("#root");
 const $spinner = document.querySelector("#spinnerNew");
 
 export function App() {
-  $root.appendChild(Loader());
+  //$root.appendChild(Loader());
   enventsListeners();
 }
 
 function enventsListeners() {
-  const $aCoin = document.querySelector("#aCoin");
-  $aCoin.addEventListener("click", () => {
-    factoryEntity("coin", "load");
-  });
+  // const $aCoin = document.querySelector("#aCoin");
+  // $aCoin.addEventListener("click", () => {
+  //   factoryEntity("coin", "load");
+  // });
 
   const $aCoinFa = document.querySelector("#aCoinFa");
   $aCoinFa.addEventListener("click", () => {
@@ -30,9 +30,7 @@ function enventsListeners() {
   });
 
   window.addEventListener("click", (e) => {
-    if (e.target.dataset.entidad !== undefined) {
-      // const entidad = new Entity("List " + "coins", "coins");
-      // entidad.setEntities(api.COINS);
+    if (e.target.dataset.entidad !== undefined) {      
       const entidad = createEntidad("coin", {
         root: $root,
         spinner: $spinner,
@@ -45,7 +43,7 @@ function enventsListeners() {
           spinner: $spinner,
           entidad: entidad,
         };
-
+        entidad.method = "DELETE"
         deleteElement(datos);
       } else if (e.target.dataset.action === "edit") {
         entidad.method = "PUT";
@@ -56,10 +54,10 @@ function enventsListeners() {
   });
 }
 
-function createABM(strategy) {
-  const crudContext = new CrudContext(strategy, aObjectsEntity, $root);
-  crudContext.show();
-}
+// function createABM(strategy) {
+//   const crudContext = new CrudContext(strategy, aObjectsEntity, $root);
+//   crudContext.show();
+// }
 
 function createEntidad(name, elements) {
   if (name === "coin") {
@@ -104,7 +102,6 @@ function createEntidad(name, elements) {
     };
 
     entidad.setEntities(api.COINS);
-    //entidad.setEntityUrl()
     entidad.entity = "coin";
 
     return entidad;

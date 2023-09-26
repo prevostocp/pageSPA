@@ -12,8 +12,6 @@ export function loadEntityFa(ent) {
     options: {},
     cbSuccess: (elements) => {
       aObjectsEntity = [...elements];
-
-      //createInterface(rootHTML, ent);
       createInterface(ent);
       limpiarHTML(ent.elements.spinner);
     },
@@ -28,22 +26,16 @@ export function deleteElement(data) {
   const { id, entidad, elementHTML, spinner } = data;
 
   let options = {
-    method: "DELETE",
+    method: entidad.method,
   };
-  console.log(entidad.getEntities + "/" + id);
+  
   ajax({
     url: entidad.getEntities + "/" + id,
     options: options,
-    cbSuccess: (result) => {
-      console.log(result);
-      //aOjectTemp = aObjectsEntity.filter(e => e.id_codigo !== id);
-      //aObjectsEntity = [...aOjectTemp];
-      //limpiarHTML(elementHTML);
-      console.log(entidad);
+    cbSuccess: () => {
       loadEntityFa(entidad, elementHTML, spinner);
     },
   });
-  //console.log("eliminando");
 }
 
 export function editElement(entidad, element) {
@@ -84,19 +76,7 @@ export function editElement(entidad, element) {
 function createInterface(ent) {
   limpiarHTML(ent.elements.root);
   const tableStrategy = new TableStrategy();
-  //const { columns, title, entity, values, getEntities } = ent;
-
-  // crudContext.setProps({
-  //   strategy: tableStrategy,
-  //   data: aObjectsEntity,
-  //   element: elementHTML,
-  //   columns,
-  //   title,
-  //   entity,
-  //   values,
-  //   addUrl: getEntities,
-  // });
-
+ 
   ent.data = aObjectsEntity;
   ent.method = "POST";
 
@@ -111,19 +91,7 @@ function createInterface(ent) {
 export function createInterfaceForm(ent) {
   limpiarHTML(ent.elements.root);
   const formStrategy = new FormStrategy();
-  //const { columns, title, entity, values, addUrl } = ent;
-
-  // crudContext.setProps({
-  //   strategy: formStrategy,
-  //   element: ent.element,
-  //   columns,
-  //   title,
-  //   entity,
-  //   values,
-  //   addUrl,
-  //   objEntity: ent,
-  // });
-
+  
   crudContext.setProps({
     strategy: formStrategy,
     objEntity: ent,
@@ -145,8 +113,7 @@ export function saveNewEntity(props) {
     url: props.getEntities,
     options: options,
     cbSuccess: (result) => {
-      console.log(props);
-
+      
       limpiarHTML(props.elements.root);
       loadEntityFa(props);
     },
@@ -165,7 +132,7 @@ export function saveEntity(props, action) {
   ajax({
     url: action === "A" ? props.getEntities : props.putEntitie + "/" + props.id,
     options: options,
-    cbSuccess: (result) => {
+    cbSuccess: () => {
       limpiarHTML(props.elements.root);
       loadEntityFa(props);
     },

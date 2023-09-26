@@ -1,6 +1,7 @@
 import { getFormHTML, formNewEntity } from "./UIEntities.js";
 import { FormAddEditEmtity } from "../components/FormAddEditEntity.js";
 import { createInterfaceForm, saveNewEntity } from "./entitiesObj.js";
+import { Validate } from "../helpers/functions.js"
 
 export class CrudContext {
   constructor(strategy, data, element) {
@@ -72,6 +73,11 @@ export class FormStrategy {
       aElements.forEach((e) => {
         objEntity.values[e.name.toLowerCase()] = e.value;
       });
+
+      if(!Validate(objEntity.values)) {
+        console.log("todos los campos son obligatorios")
+        return;
+      }
 
       saveNewEntity(objEntity);
     });
