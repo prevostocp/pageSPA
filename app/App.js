@@ -9,7 +9,7 @@ const $root = document.querySelector("#root");
 const $spinner = document.querySelector("#spinnerNew");
 
 export function App() {
-  //$root.appendChild(Loader());
+  
   enventsListeners();
 }
 

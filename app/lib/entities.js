@@ -1,4 +1,4 @@
-import { ajax } from "../helpers/ajax.js";
+import  ajax  from "../helpers/ajax.js";
 import { Entity } from "./Entity.js";
 import { FormEntity } from "../components/FormEntity.js";
 

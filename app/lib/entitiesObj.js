@@ -1,5 +1,5 @@
 import { CrudContext, FormStrategy, TableStrategy } from "./strategy.js";
-import { ajax } from "../helpers/ajax.js";
+import  ajax  from "../helpers/ajax.js";
 
 let aObjectsEntity = [];
 const crudContext = new CrudContext("", "", "");
