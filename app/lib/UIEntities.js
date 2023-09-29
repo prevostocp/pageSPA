@@ -126,6 +126,7 @@ function generateComponentsForm(props) {
   $btnCancel.classList.add("btn", "btn-danger", "py-3", "mb-4", "mx-1", "mt-3");
   $btnCancel.type = "submit";
   $btnCancel.innerText = "Cancel";
+  $btnCancel.id = "btnCancel";
 
   $divContainer.appendChild($btnSave);
   $divContainer.appendChild($btnCancel);

@@ -1,5 +1,5 @@
 import { CrudContext, FormStrategy, TableStrategy } from "./strategy.js";
-import  ajax  from "../helpers/ajax.js";
+import ajax from "../helpers/ajax.js";
 
 let aObjectsEntity = [];
 const crudContext = new CrudContext("", "", "");
@@ -28,7 +28,7 @@ export function deleteElement(data) {
   let options = {
     method: entidad.method,
   };
-  
+
   ajax({
     url: entidad.getEntities + "/" + id,
     options: options,
@@ -76,7 +76,7 @@ export function editElement(entidad, element) {
 function createInterface(ent) {
   limpiarHTML(ent.elements.root);
   const tableStrategy = new TableStrategy();
- 
+
   ent.data = aObjectsEntity;
   ent.method = "POST";
 
@@ -91,7 +91,7 @@ function createInterface(ent) {
 export function createInterfaceForm(ent) {
   limpiarHTML(ent.elements.root);
   const formStrategy = new FormStrategy();
-  
+
   crudContext.setProps({
     strategy: formStrategy,
     objEntity: ent,
@@ -113,7 +113,6 @@ export function saveNewEntity(props) {
     url: props.getEntities,
     options: options,
     cbSuccess: (result) => {
-      
       limpiarHTML(props.elements.root);
       loadEntityFa(props);
     },
@@ -121,6 +120,8 @@ export function saveNewEntity(props) {
 }
 
 export function saveEntity(props, action) {
+  const { values } = props;
+
   let options = {
     method: props.method,
     headers: {
@@ -130,11 +131,15 @@ export function saveEntity(props, action) {
   };
 
   ajax({
-    url: action === "A" ? props.getEntities : props.putEntitie + "/" + props.id,
+    url:
+      action === "A"
+        ? props.getEntities
+        : props.getEntities + "/" + values.coin_id,
     options: options,
-    cbSuccess: () => {
-      limpiarHTML(props.elements.root);
-      loadEntityFa(props);
+    cbSuccess: (result) => {
+      console.log(result, "values2");
+      //limpiarHTML(props.elements.root);
+      //loadEntityFa(props);
     },
   });
 }

@@ -1,7 +1,12 @@
 import { getFormHTML, formNewEntity } from "./UIEntities.js";
 import { FormAddEditEmtity } from "../components/FormAddEditEntity.js";
-import { createInterfaceForm, saveNewEntity } from "./entitiesObj.js";
-import { Validate } from "../helpers/functions.js"
+import {
+  createInterfaceForm,
+  saveNewEntity,
+  loadEntityFa,
+  saveEntity,
+} from "./entitiesObj.js";
+import Validate from "../helpers/functions.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
@@ -74,12 +79,19 @@ export class FormStrategy {
         objEntity.values[e.name.toLowerCase()] = e.value;
       });
 
-      if(!Validate(objEntity.values)) {
-        console.log("todos los campos son obligatorios")
+      if (!Validate(objEntity.values)) {
+        console.log("todos los campos son obligatorios");
         return;
       }
+      //console.log(objEntity.method);
+      //saveNewEntity(objEntity);
+      const oper = objEntity.method === "POST" ? "A" : "E";
+      saveEntity(objEntity, oper);
+    });
 
-      saveNewEntity(objEntity);
+    const $btnCancel = document.querySelector("#btnCancel");
+    $btnCancel.addEventListener("click", () => {
+      loadEntityFa(props.objEntity);
     });
   }
 }

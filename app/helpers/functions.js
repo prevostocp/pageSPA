@@ -1,8 +1,11 @@
-// function Validate(obj) {
-//     return Object.values(obj).every(input => input !== "");
-// }
+// const Validate = (obj) => {
+//   return Object.values(obj).every((input) => input !== "");
+// };
 
 // export default {
-//     Validate
-// }
-  
+//   Validate,
+// };
+
+export default function Validate(obj) {
+  return Object.values(obj).every((input) => input !== "");
+}
