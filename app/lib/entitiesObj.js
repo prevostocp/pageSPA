@@ -12,6 +12,7 @@ export function loadEntityFa(ent) {
     options: {},
     cbSuccess: (elements) => {
       aObjectsEntity = [...elements];
+
       createInterface(ent);
       limpiarHTML(ent.elements.spinner);
     },
@@ -122,12 +123,19 @@ export function saveNewEntity(props) {
 export function saveEntity(props, action) {
   const { values } = props;
 
+  // Codigo temporal hasta que se agregue description
+  const tempValues = {
+    name: values.name,
+    symbol: values.symbol,
+  };
+
   let options = {
     method: props.method,
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },
-    body: JSON.stringify(props.values),
+    //body: JSON.stringify(props.values),
+    body: JSON.stringify(tempValues),
   };
 
   ajax({
@@ -137,9 +145,8 @@ export function saveEntity(props, action) {
         : props.getEntities + "/" + values.coin_id,
     options: options,
     cbSuccess: (result) => {
-      console.log(result, "values2");
-      //limpiarHTML(props.elements.root);
-      //loadEntityFa(props);
+      limpiarHTML(props.elements.root);
+      loadEntityFa(props);
     },
   });
 }

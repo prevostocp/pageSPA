@@ -6,7 +6,7 @@ import {
   loadEntityFa,
   saveEntity,
 } from "./entitiesObj.js";
-import Validate from "../helpers/functions.js";
+import { Validate, viewAlert, removeAlert } from "../helpers/functions.js";
 
 export class CrudContext {
   constructor(strategy, data, element) {
@@ -81,6 +81,9 @@ export class FormStrategy {
 
       if (!Validate(objEntity.values)) {
         console.log("todos los campos son obligatorios");
+        const $alert = document.querySelector("#divAlert");
+        $alert.appendChild(viewAlert("todos los campos son obligatorios"));
+        removeAlert();
         return;
       }
       //console.log(objEntity.method);

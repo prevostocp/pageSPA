@@ -17,7 +17,6 @@ export function getFormHTML(props) {
 }
 
 export function formNewEntity(props) {
-  console.log(props, "formNewEntity");
   return generateComponentsForm(props);
 }
 
