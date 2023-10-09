@@ -6,7 +6,7 @@ const crudContext = new CrudContext("", "", "");
 
 export function loadEntityFa(ent) {
   limpiarHTML(ent.elements.root);
-
+  console.log(ent.getEntities, "url");
   ajax({
     url: ent.getEntities,
     options: {},
