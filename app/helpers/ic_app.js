@@ -1,5 +1,5 @@
 //const NAME = "localhost:4000",
-const NAME = "prevostocp.github.io/pageSPA/",
+const NAME = "backend-dvdcba.onrender.com",
   DOMAIN = `https://${NAME}`,
   SITE = `${DOMAIN}/api/`,
   COINS = `${SITE}coins`;
